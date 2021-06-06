@@ -45,7 +45,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.virtual("password")
     .set(function(password){
-        this._password = password
+        this._password = password     
         this.salt = uuidv4();
         this.encry_password = this.securePassword(password)
     })
@@ -55,7 +55,7 @@ userSchema.virtual("password")
 
 
 
-userSchema.method = {
+userSchema.methods = {
 
     authenticate: function(plainPassword){
         return this.securePassword(plainPassword) === this.encry_password
@@ -79,9 +79,5 @@ userSchema.method = {
 
     }
 }
-
-
-
-
 
 module.exports = mongoose.model("User", userSchema); 

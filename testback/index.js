@@ -12,6 +12,22 @@ app.get('/signin',(req,res) =>{
     return res.send('Hello you are here')
 })
 
+const isAdmin = (res,req,next) =>{
+    console.log("Admin is running !")
+    next();
+}
+
+const isLoggedIn = (req,res,next) =>{
+    console.log("User is Logged in !");
+    next();
+}
+
+
+const admin = (req,res) =>{
+    return res.send('You are an admin now !')
+}
+
+app.get('/admin',isLoggedIn,isAdmin,admin)
 
 app.get('/signout',(req,res) =>{
    // console.log(res);

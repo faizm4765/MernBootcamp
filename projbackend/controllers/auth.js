@@ -56,7 +56,7 @@ exports.signin = (req,res) =>{
         // send response to frontend
         const {_id,name,role} = user;
         return res.json({
-            token,              //es-6 syntax 
+            token,              //es-6 syntax for token:token
             user:{_id,name,email,role}
         })
     })
@@ -69,16 +69,24 @@ exports.signout = (req,res) =>{
     })
 }
 
+
+
 //protected routes
 exports.isSignedIn = expressJwt({
-    secret:"sssshhhh",
+    secret:"shhhhh",            //same secret jo signIn mein diye the
     userProperty:"auth"
 })
 
+exports.isSignedIn1 = (req,res,next) =>{
+    console.log("jiiji");
+    next();
+}
+
+
 //custom middlewares
 exports.isAuthenticated = (req,res,next) =>{
-
-    let checker = req.profile && req.auth && req.profile._id == req.auth._id;
+    console.log(req.profile);
+    let checker = req.profile && req.auth && (req.profile._id == req.auth._id);
     if(!checker){
         return res.status(403).json({
             error:"ACCESS DENIED"

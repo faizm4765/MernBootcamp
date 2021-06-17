@@ -12,7 +12,7 @@ signup)
 
 router.post("/signin",
     check("email").isEmail(),
-    check("password").isLength({min:6}).withMessage("password field is compulsory"),
+    check("password").isLength({min:6}).withMessage("p assword field is compulsory"),
 signin)
 
 
